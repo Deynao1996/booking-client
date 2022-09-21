@@ -1,0 +1,122 @@
+.hotels {
+  flex: 3 3 610px;
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  gap: 20px;
+  list-style: none;
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    border: 1px solid var(--light-color);
+    padding: 10px;
+    border-radius: 5px;
+  }
+  &__img {
+    width: 200px;
+    height: 200px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 0.75rem;
+  }
+  &__view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__title {
+    font-size: 1.25rem;
+    color: var(--optional-color);
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  &__taxi {
+    background-color: var(--green-color);
+    color: var(--main-color);
+    width: max-content;
+    padding: 3px;
+    border-radius: 5px;
+  }
+  &__features {
+    font-weight: bold;
+  }
+  &__cancellation {
+    color: var(--green-color);
+    font-weight: bold;
+  }
+  &__subtitle {
+    color: var(--green-color);
+  }
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+    & > span {
+      font-weight: 500;
+    }
+    & > div {
+      background-color: var(--secondary-color);
+      color: var(--main-color);
+      padding: 5px;
+      font-weight: bold;
+      border: none;
+    }
+  }
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+    & > div {
+      font-size: 1.5rem;
+    }
+    & > span {
+      font-size: 0.75rem;
+      color: gray;
+    }
+    & > a {
+      font-size: 0.875rem;
+    }
+  }
+  &__empty {
+    font-size: 2rem;
+    text-align: center;
+    color: var(--dark-color);
+    background: #ffffff;
+    text-shadow: 2px 2px 0px #ffffff, 5px 4px 0px rgba(0, 0, 0, 0.15);
+  }
+  &__trigger {
+    position: absolute;
+    pointer-events: none;
+    visibility: hidden;
+    bottom: 10%;
+    width: 5px;
+    height: 5px;
+  }
+}
+
+@media (max-width: 405px) {
+  .hotels__img {
+    width: 100%;
+  }
+}
+@media (max-width: 305px) {
+  .hotels__top {
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

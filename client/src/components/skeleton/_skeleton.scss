@@ -1,0 +1,256 @@
+.city-skeleton {
+  z-index: 1;
+  border-radius: 10px;
+  background-color: #313131;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: flex-end;
+  background-image: linear-gradient(
+    90deg,
+    #ccc 0px,
+    rgb(229 229 229 / 90%) 40px,
+    #ccc 80px
+  );
+  background-size: 300%;
+  background-position: 100% 0;
+  animation: shimmer 1.5s infinite;
+  &__title {
+    width: 100%;
+    height: 40px;
+    background-color: rgb(229 229 229 / 90%);
+    border-radius: 10px;
+  }
+  &__subtitle {
+    border-radius: 10px;
+    width: 100%;
+    height: 32px;
+    background-color: rgb(229 229 229 / 90%);
+    margin-top: 5px;
+  }
+}
+
+.property-skeleton {
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  text-decoration: none;
+  flex-direction: column;
+  justify-content: space-between;
+  &__bg,
+  &__title,
+  &__subtitle {
+    background-image: linear-gradient(
+      90deg,
+      #ccc 0px,
+      rgb(229 229 229 / 90%) 40px,
+      #ccc 80px
+    );
+    background-size: 300%;
+    background-position: 100% 0;
+    animation: shimmer 1.5s infinite;
+  }
+  &__bg {
+    width: 100%;
+    height: 150px;
+  }
+  &__title {
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+  }
+  &__subtitle {
+    height: 15px;
+    width: 100%;
+  }
+}
+
+.home-skeleton {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 7px;
+  border-radius: 10px;
+  overflow: hidden;
+  &__bg,
+  &__title,
+  &__location,
+  &__price,
+  &__opinion {
+    background-image: linear-gradient(
+      90deg,
+      #ccc 0px,
+      rgb(229 229 229 / 90%) 40px,
+      #ccc 80px
+    );
+    background-size: 300%;
+    background-position: 100% 0;
+    animation: shimmer 1.5s infinite;
+  }
+  &__bg {
+    width: 100%;
+    height: 250px;
+  }
+  &__title,
+  &__location,
+  &__price {
+    height: 20px;
+    width: 100%;
+  }
+  &__opinion {
+    height: 20px;
+    width: 100%;
+  }
+}
+
+.hotel-skeleton {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid var(--light-color);
+  padding: 10px;
+  border-radius: 5px;
+  &__bg,
+  &__content {
+    background-image: linear-gradient(
+      90deg,
+      #ccc 0px,
+      rgb(229 229 229 / 90%) 40px,
+      #ccc 80px
+    );
+    background-size: 300%;
+    background-position: 100% 0;
+    animation: shimmer 1.5s infinite;
+  }
+  &__bg {
+    width: 200px;
+    height: 200px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  &__content {
+    flex: 3;
+    height: 200px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+}
+
+.single-hotel-skeleton {
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__info,
+  &__address,
+  &__location,
+  &__taxi,
+  &__title,
+  &__descr,
+  &__reserve {
+    background-image: linear-gradient(
+      90deg,
+      #ccc 0px,
+      rgb(229 229 229 / 90%) 40px,
+      #ccc 80px
+    );
+    background-size: 300%;
+    background-position: 100% 0;
+    animation: shimmer 1.5s infinite;
+  }
+  &__info {
+    width: 100%;
+    height: 35px;
+  }
+  &__address {
+    width: 100%;
+    height: 14px;
+  }
+  &__location,
+  &__taxi {
+    width: 100%;
+    height: 15px;
+  }
+  &__gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(337px, 1fr));
+    grid-template-rows: repeat(2, 229px);
+    grid-auto-rows: 229px;
+    gap: 5px;
+    div {
+      background-image: linear-gradient(
+        90deg,
+        #ccc 0px,
+        rgb(229 229 229 / 90%) 40px,
+        #ccc 80px
+      );
+      background-size: 300%;
+      background-position: 100% 0;
+      animation: shimmer 1.5s infinite;
+    }
+  }
+}
+
+.reserve-skeleton {
+  background-color: white;
+  padding: 20px;
+  position: relative;
+  &__title,
+  &__button,
+  &__select {
+    background-image: linear-gradient(
+      90deg,
+      #ccc 0px,
+      rgb(229 229 229 / 90%) 40px,
+      #ccc 80px
+    );
+    background-size: 300%;
+    background-position: 100% 0;
+    animation: shimmer 1.5s infinite;
+  }
+  &__title {
+    width: 100%;
+    height: 20px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 20px;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 300px;
+    & > div {
+      height: 16px;
+      width: 100%;
+      background-image: linear-gradient(
+        90deg,
+        #ccc 0px,
+        rgb(229 229 229 / 90%) 40px,
+        #ccc 80px
+      );
+      background-size: 300%;
+      background-position: 100% 0;
+      animation: shimmer 1.5s infinite;
+    }
+  }
+  &__select {
+    width: 13px;
+    height: 13px;
+  }
+  &__button {
+    width: 100%;
+    border-radius: 5px;
+    height: 39px;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -100% 0;
+  }
+}

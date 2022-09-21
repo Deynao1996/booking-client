@@ -1,0 +1,67 @@
+.city {
+  &__items {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(328px, 1fr));
+    grid-template-rows: 250px;
+    grid-auto-rows: 250px;
+    justify-content: center;
+    gap: 20px;
+  }
+  &__item {
+    position: relative;
+    z-index: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    transition: 0.4s;
+    a {
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: var(--main-color);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      justify-content: flex-end;
+      div {
+        font-size: var(--fs-l);
+        font-weight: bold;
+      }
+      span {
+        font-size: var(--fs-m);
+        font-weight: bold;
+      }
+    }
+    &:hover {
+      transform: scale(1.02, 1.02);
+      box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
+        -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+    }
+  }
+  &__img {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 0%, black 100%);
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__title {
+    text-transform: capitalize;
+  }
+}

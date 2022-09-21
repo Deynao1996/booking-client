@@ -1,0 +1,131 @@
+.button {
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+  background-color: #ededed;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  cursor: pointer;
+  color: var(--dark-color);
+  font-size: 0.9735rem;
+  padding: 5px 10px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  transition: 0.2s all;
+  &__subscribe {
+    height: 50px;
+    flex: 1;
+  }
+  &:hover {
+    background: linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+    background-color: #dfdfdf;
+  }
+  &:active {
+    position: relative;
+    color: var(--black-color);
+    top: 1px;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+  &_blue {
+    box-shadow: inset 0px 1px 0px 0px #97c4fe;
+    background: linear-gradient(
+      to bottom,
+      #3d94f6 5%,
+      var(--optional-color) 100%
+    );
+    background-color: #3d94f6;
+    border: 1px solid #337fed;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px #1570cd;
+    &:hover {
+      background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+      background-color: #1e62d0;
+    }
+    &:active {
+      position: relative;
+      color: var(--main-color);
+      top: 1px;
+    }
+  }
+  &_medium {
+    padding: 7px 26px;
+  }
+  &_br-0 {
+    border-radius: 0;
+  }
+}
+
+.button-usuall {
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  background-color: var(--optional-color);
+  color: var(--main-color);
+  font-weight: 500;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
+  &__auth {
+    margin: 10px 0;
+    width: 40%;
+    padding: 15px 20px;
+  }
+  &_w-100 {
+    width: 100%;
+  }
+  &_br-0 {
+    border-radius: 0;
+  }
+  &_m-0 {
+    margin: 0;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+}
+
+.passport {
+  width: 45%;
+  min-width: 186px;
+  height: 42px;
+  background-color: #4285f4;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  &__wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: var(--main-color);
+  }
+  &__icon {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 11px;
+    width: 18px;
+    height: 18px;
+  }
+  & > p {
+    float: right;
+    margin: 11px 11px 0 0;
+    color: var(--main-color);
+    font-size: 0.875rem;
+    letter-spacing: 0.2px;
+    font-family: 'Roboto';
+  }
+  &:hover {
+    box-shadow: 0 0 6px #4285f4;
+  }
+  &:active {
+    background: #1669f2;
+  }
+}

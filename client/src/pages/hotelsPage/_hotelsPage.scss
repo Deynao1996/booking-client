@@ -1,0 +1,11 @@
+.hotels-content {
+  padding: 20px 0;
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+    gap: 20px;
+  }
+}

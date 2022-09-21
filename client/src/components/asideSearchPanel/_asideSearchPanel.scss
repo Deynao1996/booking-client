@@ -1,0 +1,67 @@
+.aside {
+  flex: 1 1 266px;
+  background-color: var(--orange-color);
+  padding: 10px;
+  border-radius: 10px;
+  position: sticky;
+  top: 10px;
+  height: max-content;
+  &__pseudo-input {
+    margin: 5px 0;
+    height: 30px;
+    border: none;
+    padding: 5px;
+    background-color: var(--main-color);
+    font-size: 0.875rem;
+    font-weight: 100;
+    cursor: pointer;
+  }
+  &__title {
+    font-size: 1.25rem;
+    color: var(--gray-color);
+    margin-bottom: 10px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    & > span {
+      font-size: 0.75rem;
+    }
+    & > input {
+      margin: 5px 0;
+      height: 30px;
+      border: none;
+      padding: 5px;
+      text-transform: capitalize;
+    }
+  }
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+  }
+  &__option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & > span {
+      color: var(--gray-color);
+      font-size: 0.75rem;
+    }
+    & > input {
+      width: 50px;
+    }
+  }
+  &__price {
+    & > input {
+      width: 60px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .aside {
+    position: relative;
+  }
+}

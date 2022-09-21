@@ -1,0 +1,31 @@
+.header {
+  background-image: linear-gradient(
+    to bottom,
+    #003580,
+    #004391,
+    #0052a1,
+    #0061b2,
+    #0071c2
+  );
+  z-index: 3;
+  &__label {
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--main-color);
+  }
+  &__banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    flex-wrap: wrap;
+  }
+
+  &__menu {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
