@@ -53,7 +53,7 @@ export const fetchRoom = async (roomId) => {
 }
 
 export const createOrder = async (order) => {
-  return await request({ url: `/order`, method: 'POST', data: order })
+  return await request({ url: `/orders`, method: 'POST', data: order })
 }
 
 export const sendPayment = async (order) => {
@@ -82,8 +82,16 @@ export const fetchAllCities = async () => {
   return await request({ url: `/hotels/cities` })
 }
 
+export const createNotifications = async (data) => {
+  return await request({
+    url: '/notifications',
+    method: 'POST',
+    data
+  })
+}
+
 export const fetchHouses = async (params) => {
-  const searchParams = _getSearchParams(params.queryKey[1])
+  const searchParams = _getSearchParams(params.queryKey[1]).toLocaleLowerCase()
   const resParams = params.pageParam
     ? `${searchParams}&page=${params.pageParam}`
     : searchParams

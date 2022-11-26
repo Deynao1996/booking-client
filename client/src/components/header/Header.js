@@ -1,54 +1,113 @@
-import { useState } from 'react'
-import MediaQuery, { useMediaQuery } from 'react-responsive'
-import { AiOutlineMenu } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import Nav from '../nav/Nav'
-import Menu from '../menu/Menu'
-import Authorization from '../authorization/Authorization'
+import { useCallback, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import MenuIcon from '@mui/icons-material/Menu'
+import { Login, PersonAddAlt1 } from '@mui/icons-material'
+import {
+  AppBar,
+  Box,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography,
+  useMediaQuery
+} from '@mui/material'
+import { useAuthProvider } from '../../contexts/AuthContext'
+import UserInfo from './UserInfo'
+import CustomDrawer from './CustomDrawer'
+import SwitchColorTheme from '../SwitchColorTheme'
+import { useThemeProvider } from '../../contexts/ThemeContext'
+import HideOnScroll from '../ScrollWrappers/HideOnScroll'
 
-import './_header.scss'
+const offlineHeaderLinks = [
+  {
+    label: 'Login',
+    to: '/auth/login',
+    icon: <Login />,
+    withCurrentUser: false
+  },
+  {
+    label: 'Register',
+    to: '/auth/register',
+    icon: <PersonAddAlt1 />,
+    withCurrentUser: false
+  }
+]
 
-const HEADER__STICKY__STYLES = {
-  position: 'sticky',
-  top: 0,
-  left: 0
-}
+const Header = (props) => {
+  const { window } = props
+  const { currentUser } = useAuthProvider()
+  const { theme } = useThemeProvider()
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const navigate = useNavigate()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const queryWidth = 778
-  const isLaptop = useMediaQuery({
-    query: `(max-width: ${queryWidth}px)`
-  })
+  const container = useMemo(
+    () => (window !== undefined ? () => window().document.body : undefined),
+    [window]
+  )
+
+  const handleDrawer = useCallback(
+    (state) => setMobileOpen(state),
+    [setMobileOpen]
+  )
+
+  function renderBarItems() {
+    return offlineHeaderLinks.map((item) => (
+      <Button
+        key={item.label}
+        sx={{ color: '#fff' }}
+        onClick={() => navigate(item.to)}
+      >
+        {item.label}
+      </Button>
+    ))
+  }
 
   return (
-    <header
-      className="header"
-      style={isLaptop ? { ...HEADER__STICKY__STYLES } : {}}
-    >
-      <div className="container">
-        <div className="header__banner">
-          <Link to="/" className="header__label">
-            Booking
-          </Link>
-          <MediaQuery minWidth={queryWidth}>
-            <Authorization type="desktop" />
-          </MediaQuery>
-          <MediaQuery maxWidth={queryWidth}>
-            <button
-              className="button header__menu"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+    <>
+      <HideOnScroll>
+        <AppBar component="nav" position="sticky" sx={{ zIndex: '999' }}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={() => handleDrawer(true)}
+              sx={{
+                mr: 2,
+                display: { sm: 'none' },
+                justifyContent: 'flex-start'
+              }}
             >
-              <AiOutlineMenu />
-            </button>
-            <Menu setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
-          </MediaQuery>
-        </div>
-        <MediaQuery minWidth={queryWidth}>
-          <Nav type="desktop" />
-        </MediaQuery>
-      </div>
-    </header>
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                flexGrow: 1,
+                display: { xs: 'none', sm: 'block' },
+                cursor: 'pointer'
+              }}
+              onClick={() => navigate('/')}
+            >
+              Booking
+            </Typography>
+            <Box sx={{ display: 'flex', ml: 'auto' }}>
+              {!isMobile && <SwitchColorTheme />}
+              {currentUser ? <UserInfo /> : renderBarItems()}
+            </Box>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
+      {isMobile && (
+        <CustomDrawer
+          handleDrawer={handleDrawer}
+          container={container}
+          mobileOpen={mobileOpen}
+        />
+      )}
+    </>
   )
 }
 

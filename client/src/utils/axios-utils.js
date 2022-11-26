@@ -1,5 +1,4 @@
 import axios from 'axios'
-import swal from 'sweetalert'
 
 const client = axios.create({
   // baseURL: 'http://localhost:8800/api',
@@ -10,15 +9,10 @@ export const request = ({ ...options }) => {
   const onSuccess = (response) => response
   const onError = (error) => {
     const {
-      message,
       response: { data }
     } = error
-    if (data.errorMessage) {
-      swal('Error', data.errorMessage, 'error')
-    } else {
-      swal('Error', message, 'error')
-    }
-    return error
+    if (data.errorMessage) throw new Error(data.errorMessage)
+    throw new Error('Something went wrong! Please try later!')
   }
   return client(options).then(onSuccess).catch(onError)
 }

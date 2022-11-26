@@ -1,70 +1,173 @@
-import { Link } from 'react-router-dom'
-import { getFloatRating, getOpinion } from '../components/hotelsList/HotelsList'
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  Rating,
+  Typography
+} from '@mui/material'
+import { StyledLink } from '../components/DesktopNav'
+import { getFloatRating, getOpinion } from '../components/Lists/HotelsList'
+import { capitalizeString } from './capitalize-string-utils'
 
-export function renderProperties(data, resetSearchParams) {
-  return data.data?.map((property, i) => {
-    const hotelCount = property.count === 1 ? 'hotel' : 'hotels'
+export function renderProperties(data) {
+  return (
+    <Grid container spacing={3}>
+      {data?.data.map((property) => {
+        const hotelCount = property.count === 1 ? 'hotel' : 'hotels'
 
-    return (
-      <li className="property__item" key={i}>
-        <Link
-          to={`/houses?type=${property.type}`}
-          onClick={() => resetSearchParams()}
-        >
-          <div className="property__img">
-            <img src={property.img} alt={property.type} />
-          </div>
-          <div className="property__title">{property.type}</div>
-          <span>
-            {property.count} {hotelCount}
-          </span>
-        </Link>
-      </li>
-    )
-  })
+        return (
+          <Grid item xs={12} sm={2.4} key={property.type}>
+            <Card elevation={0}>
+              <CardActionArea>
+                <StyledLink
+                  to={`/houses?type=${property.type}`}
+                  state={{ fromItemsList: true }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={property.img}
+                    alt={property.type}
+                  />
+                  <CardContent sx={{ px: 1 }}>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="div"
+                      textTransform={'capitalize'}
+                    >
+                      {property.type}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {property.count} {hotelCount}
+                    </Typography>
+                  </CardContent>
+                </StyledLink>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        )
+      })}
+    </Grid>
+  )
 }
 
-export function renderCities(data, resetSearchParams) {
-  return data.data?.map((city) => {
-    return (
-      <li className="city__item" key={city._id}>
-        <div className="city__img">
-          <img src={city.cityImg} alt="city" />
-        </div>
-        <Link
-          to={`houses`}
-          state={{ destination: city.city }}
-          onClick={() => resetSearchParams({ destination: city.city })}
-        >
-          <div className="city__title">{city.city}</div>
-          <span>{city.count} properties</span>
-        </Link>
-      </li>
-    )
-  })
+export function renderCities(data) {
+  return (
+    <Grid container spacing={3}>
+      {data?.data.map((city) => {
+        const capitalizedCity = capitalizeString(city.city)
+        return (
+          <Grid item xs={12} sm={4} key={city._id}>
+            <Card>
+              <CardActionArea>
+                <StyledLink
+                  to={'houses'}
+                  state={{ destination: capitalizedCity, fromItemsList: true }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={city.cityImg}
+                    alt={capitalizedCity}
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="div"
+                      textTransform={'capitalize'}
+                    >
+                      {capitalizedCity}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {city.count} properties
+                    </Typography>
+                  </CardContent>
+                </StyledLink>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        )
+      })}
+    </Grid>
+  )
 }
 
 export function renderHomes(data) {
-  return data.data?.hotels.map((home) => {
-    const floatRating = getFloatRating(home.rating)
-
-    return (
-      <li className="home__item" key={home._id}>
-        <Link to={`houses/${home._id}`}>
-          <span className="home__img">
-            <img src={home.photos[0]} alt={home.name} />
-          </span>
-          <span className="home__title">{home.name}</span>
-          <span className="home__location">{home.city}</span>
-          <span className="home__price">
-            Starting from ${home.cheapestPrice}
-          </span>
-          <span className="home__opinion">
-            <div>{floatRating}</div>
-            {getOpinion(home.rating)}
-          </span>
-        </Link>
-      </li>
-    )
-  })
+  return (
+    <Grid container spacing={3}>
+      {data?.data.hotels.map((home) => {
+        const floatRating = getFloatRating(home.rating)
+        return (
+          <Grid item xs={12} sm={6} md={3} key={home._id}>
+            <Card elevation={4}>
+              <CardActionArea>
+                <StyledLink
+                  to={`houses/${home._id}`}
+                  state={{ fromItemsList: true }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    image={home.photos[0]}
+                    alt={home.name}
+                  />
+                  <CardContent sx={{ px: 1 }}>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      noWrap
+                      component="div"
+                      textTransform={'capitalize'}
+                    >
+                      {home.name}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      textTransform={'capitalize'}
+                      fontWeight="bold"
+                    >
+                      {home.city}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      marginY={1}
+                    >
+                      {`Starting from ${home.cheapestPrice} $`}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      component="div"
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                      }}
+                    >
+                      <Rating
+                        name="read-only"
+                        value={floatRating / 2}
+                        precision={0.2}
+                        readOnly
+                      />
+                      <div>{floatRating}</div>
+                    </Typography>
+                    <Typography variant="body2" align="right">
+                      {getOpinion(home.rating)}
+                    </Typography>
+                  </CardContent>
+                </StyledLink>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        )
+      })}
+    </Grid>
+  )
 }

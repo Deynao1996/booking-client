@@ -1,5 +1,7 @@
 export const endDateOffset = 7
 
+export const MAX_WEEK_DATE_RANGE = 2
+
 export const formatDate = 'dd/MM/yyy'
 
 export const millisecondsPerDay = 1000 * 60 * 60 * 24
